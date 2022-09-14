@@ -18,17 +18,41 @@ public class Problem167两数之和2输入有序数组 {
         System.out.println(JSON.toJSONString(ints));
     }
 
+    /**
+     * 双指针
+     */
     public static int[] twoSum(int[] numbers, int target) {
 
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < numbers.length; i++) {
-            if (map.containsKey(target - numbers[i])) {
-                return new int[]{map.get(target - numbers[i]) + 1, i + 1};
+        int slow = 0;
+        int fast = numbers.length - 1;
+        while (slow != fast) {
+            int sum = numbers[slow] + numbers[fast];
+            if (sum < target) {
+                slow++;
+            } else if (sum > target) {
+                fast--;
+            } else {
+                return new int[]{slow + 1, fast + 1};
             }
-            map.put(numbers[i], i);
         }
 
         return null;
     }
+
+    /**
+     * 哈希表ss
+     */
+//    public static int[] twoSum(int[] numbers, int target) {
+//
+//        Map<Integer, Integer> map = new HashMap<>();
+//        for (int i = 0; i < numbers.length; i++) {
+//            if (map.containsKey(target - numbers[i])) {
+//                return new int[]{map.get(target - numbers[i]) + 1, i + 1};
+//            }
+//            map.put(numbers[i], i);
+//        }
+//
+//        return null;
+//    }
 
 }
